@@ -2886,6 +2886,55 @@ function toggleFaq(id){
   document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('open'));
   if(!isOpen) item.classList.add('open');
 }
+  <script>
+  // PDF Generation Function
+  function generatePDF() {
+    const pdfBtn = document.querySelector('.pdf-btn');
+    const reportWrapper = document.querySelector('.report-wrapper');
+    
+    if (!reportWrapper) {
+      alert('No report data to download. Please generate your horoscope first.');
+      return;
+    }
+
+    // Disable button during generation
+    pdfBtn.disabled = true;
+    pdfBtn.textContent = '⏳ Generating...';
+
+    // Create a clone for PDF with proper formatting
+    const element = reportWrapper.cloneNode(true);
+    element.style.display = 'block';
+    element.style.background = '#ffffff';
+    element.style.color = '#333333';
+
+    const opt = {
+      margin: 10,
+      filename: 'astrology-report.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    };
+
+    // Generate PDF
+    html2pdf().set(opt).from(element).save().then(() => {
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = '📄 Download PDF';
+    }).catch((error) => {
+      console.error('PDF generation failed:', error);
+      alert('Failed to generate PDF. Please try again.');
+      pdfBtn.disabled = false;
+      pdfBtn.textContent = '📄 Download PDF';
+    });
+  }
+
+  // Attach to button
+  document.addEventListener('DOMContentLoaded', function() {
+    const pdfBtn = document.querySelector('.pdf-btn');
+    if (pdfBtn) {
+      pdfBtn.addEventListener('click', generatePDF);
+    }
+  });
+</script>
 </script>
 </body>
 </html>
