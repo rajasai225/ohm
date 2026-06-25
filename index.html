@@ -1962,64 +1962,66 @@
       background: #ffffff !important;
       color: #333333 !important;
       font-family: 'Inter', sans-serif;
-      padding: 15mm 15mm 18mm 15mm !important;
+      padding: 12mm 12mm 20mm 12mm !important;
       box-sizing: border-box;
       width: 210mm;
-      height: 297mm;
-      /* A4 size */
+      min-height: 297mm;
       position: relative;
       page-break-after: always;
+      break-after: page;
       display: block;
+      overflow: hidden;
+    }
+
+    .pdf-page:last-child {
+      page-break-after: avoid;
+      break-after: avoid;
     }
 
     .pdf-header {
       width: 100%;
       border-bottom: 2px solid #c8922a;
-      padding-bottom: 8px;
-      margin-bottom: 12px;
-    }
-
-    .pdf-header::after {
-      content: "";
-      display: table;
-      clear: both;
+      padding-bottom: 6px;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
     }
 
     .pdf-logo-box {
-      float: left;
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #c8922a;
-      line-height: 28px;
+      line-height: 26px;
+      white-space: nowrap;
     }
 
     .pdf-logo-symbol {
-      width: 28px;
-      height: 28px;
+      width: 26px;
+      height: 26px;
       background: #c8922a;
       border-radius: 50%;
       display: inline-block;
       text-align: center;
-      line-height: 28px;
+      line-height: 26px;
       color: #ffffff;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       vertical-align: middle;
-      margin-right: 8px;
+      margin-right: 6px;
     }
 
     .pdf-meta-box {
-      float: right;
       text-align: right;
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       color: #555555;
-      line-height: 1.4;
+      line-height: 1.35;
     }
 
     .pdf-meta-top {
       font-weight: 600;
       color: #111111;
-      font-size: 0.72rem;
+      font-size: 0.65rem;
     }
 
     .pdf-meta-bottom {
@@ -2033,80 +2035,57 @@
 
     .pdf-footer {
       position: absolute;
-      bottom: 10mm;
-      left: 15mm;
-      right: 15mm;
+      bottom: 8mm;
+      left: 12mm;
+      right: 12mm;
       border-top: 1px solid #dddddd;
-      padding-top: 6px;
-      font-size: 0.62rem;
+      padding-top: 5px;
+      font-size: 0.55rem;
       color: #777777;
-    }
-
-    .pdf-footer span:first-child {
-      float: left;
-    }
-
-    .pdf-footer span:last-child {
-      float: right;
-    }
-
-    .pdf-footer::after {
-      content: "";
-      display: table;
-      clear: both;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
     .pdf-intro-box {
       border: 1px solid #c8922a;
       background: #fdfbf5;
-      padding: 10px 12px;
-      border-radius: 6px;
-      font-size: 0.72rem;
+      padding: 8px 10px;
+      border-radius: 5px;
+      font-size: 0.65rem;
       color: #444444;
-      line-height: 1.45;
-      margin-bottom: 15px;
+      line-height: 1.4;
+      margin-bottom: 10px;
     }
 
     .pdf-section-title {
       font-family: 'Cinzel', serif;
-      font-size: 0.88rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: #c8922a;
       border-bottom: 1px dashed #c8922a;
-      padding-bottom: 3px;
+      padding-bottom: 2px;
       margin-top: 4px;
-      margin-bottom: 10px;
+      margin-bottom: 6px;
       text-transform: uppercase;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.02em;
     }
 
     .pdf-charts-row {
       width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .pdf-charts-row::after {
-      content: "";
-      display: table;
-      clear: both;
+      margin-bottom: 10px;
+      display: flex;
+      gap: 3%;
     }
 
     .pdf-chart-item {
-      float: left;
-      width: 48%;
-    }
-
-    .pdf-chart-item:first-child {
-      margin-right: 4%;
+      flex: 1;
+      min-width: 0;
     }
 
     .pdf-chart-item-third {
-      float: left;
-      width: 31%;
-    }
-
-    .pdf-chart-item-third:not(:last-child) {
-      margin-right: 3.5%;
+      flex: 1;
+      min-width: 0;
     }
 
     .pdf-south-indian-grid {
@@ -2116,37 +2095,40 @@
       border: 1.5px solid #c8922a;
       background: #ffffff;
       width: 100%;
-      height: 190px;
+      aspect-ratio: 1;
+      max-height: 170px;
     }
 
     #pdf-d7-chart,
     #pdf-d9-chart,
     #pdf-d10-chart {
-      height: 120px;
+      max-height: 110px;
     }
 
     .pdf-chart-cell {
       border: 0.5px solid #dddddd;
-      padding: 4px;
-      font-size: 0.58rem;
+      padding: 2px 3px;
+      font-size: 0.48rem;
       display: block;
       color: #333333;
       overflow: hidden;
-      min-height: 46px;
       position: relative;
+      line-height: 1.2;
     }
 
     .pdf-cell-sign-label {
-      font-size: 0.48rem;
+      font-size: 0.42rem;
       color: #c8922a;
       font-weight: bold;
-      margin-bottom: 1px;
+      margin-bottom: 0;
+      line-height: 1.1;
     }
 
     .pdf-chart-planet-item {
       display: block;
       width: 100%;
       height: auto;
+      line-height: 1.15;
     }
 
     .pdf-chart-planet-item span:first-child {
@@ -2159,7 +2141,7 @@
 
     .pdf-planet-deg {
       color: #666666;
-      font-size: 0.52rem;
+      font-size: 0.42rem;
     }
 
     .pdf-chart-planet-item::after {
@@ -2173,22 +2155,23 @@
       grid-row: 2 / span 2;
       background: #faf8f2;
       border: 0.75px solid #c8922a;
-      padding: 4px;
+      padding: 3px;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      font-size: 0.58rem;
+      font-size: 0.50rem;
       color: #555555;
-      line-height: 1.3;
+      line-height: 1.25;
+      overflow: hidden;
     }
 
     .pdf-chart-center-box strong {
       color: #111111;
-      font-size: 0.65rem;
+      font-size: 0.55rem;
       font-family: 'Cinzel', serif;
-      margin-bottom: 2px;
+      margin-bottom: 1px;
       border-bottom: 0.5px solid #c8922a;
       width: 100%;
     }
@@ -2196,9 +2179,10 @@
     .pdf-table {
       width: 100%;
       border-collapse: collapse;
-      font-size: 0.62rem;
-      margin-bottom: 15px;
+      font-size: 0.52rem;
+      margin-bottom: 8px;
       border: 1px solid #c8922a;
+      table-layout: fixed;
     }
 
     .pdf-table th {
@@ -2206,16 +2190,22 @@
       color: #8a6516;
       font-weight: 700;
       text-align: left;
-      padding: 5px 6px;
+      padding: 3px 4px;
       border: 1px solid #c8922a;
       text-transform: uppercase;
-      font-size: 0.58rem;
+      font-size: 0.48rem;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .pdf-table td {
-      padding: 4px 6px;
+      padding: 2px 4px;
       border: 1px solid #dddddd;
       color: #333333;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      word-break: break-word;
     }
 
     .pdf-table tr:nth-child(even) td {
@@ -2225,49 +2215,42 @@
     .pdf-table .highlight-col {
       color: #8a6516;
       font-weight: bold;
+      white-space: nowrap;
     }
 
     .pdf-table-row-flex {
       width: 100%;
-      margin-bottom: 15px;
-    }
-
-    .pdf-table-row-flex::after {
-      content: "";
-      display: table;
-      clear: both;
+      margin-bottom: 8px;
+      display: flex;
+      gap: 3%;
     }
 
     .pdf-table-half {
-      float: left;
-      width: 48%;
-    }
-
-    .pdf-table-half:first-child {
-      margin-right: 4%;
+      flex: 1;
+      min-width: 0;
     }
 
     .pdf-dasha-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      gap: 8px;
     }
 
     .pdf-dasha-card {
       border: 0.75px solid #dddddd;
-      padding: 10px;
-      border-radius: 6px;
+      padding: 6px 8px;
+      border-radius: 4px;
       background: #fafafa;
     }
 
     .pdf-dasha-header {
       font-family: 'Cinzel', serif;
-      font-size: 0.62rem;
+      font-size: 0.52rem;
       font-weight: 700;
       color: #8a6516;
       border-bottom: 0.75px solid #c8922a;
-      padding-bottom: 4px;
-      margin-bottom: 6px;
+      padding-bottom: 3px;
+      margin-bottom: 4px;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -2275,7 +2258,7 @@
 
     .pdf-dasha-date-range {
       font-family: 'Inter', sans-serif;
-      font-size: 0.54rem;
+      font-size: 0.45rem;
       color: #666666;
       font-weight: normal;
     }
@@ -2284,13 +2267,13 @@
       list-style: none;
       padding: 0;
       margin: 0;
-      font-size: 0.54rem;
+      font-size: 0.45rem;
     }
 
     .pdf-bhukti-item {
       display: flex;
       justify-content: space-between;
-      padding: 2px 0;
+      padding: 1px 0;
     }
 
     .pdf-bhukti-item.active {

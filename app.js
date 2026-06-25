@@ -1575,12 +1575,12 @@ function downloadReportPdf() {
   const calc = currentReportData;
   const pdfWrapper = document.createElement('div');
   pdfWrapper.id = 'pdf-wrapper-temp';
-  pdfWrapper.style.position = 'absolute';
+  pdfWrapper.style.position = 'fixed';
   pdfWrapper.style.left = '-9999px';
   pdfWrapper.style.top = '0';
   pdfWrapper.style.width = '210mm';
-  pdfWrapper.style.height = '0';
-  pdfWrapper.style.overflow = 'hidden';
+  pdfWrapper.style.zIndex = '-1';
+  pdfWrapper.style.visibility = 'hidden';
   document.body.appendChild(pdfWrapper);
 
   const pdfContainer = document.createElement('div');
@@ -1991,13 +1991,17 @@ function downloadReportPdf() {
     margin: 0,
     filename: `${calc.name.replace(/\s+/g, '_')}_AI_Astrology_report.pdf`,
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true, letterRendering: true },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    html2canvas: { scale: 2, useCORS: true, letterRendering: true, width: 794, windowWidth: 794 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    pagebreak: { mode: ['css', 'legacy'], avoid: ['.pdf-table', '.pdf-dasha-grid', '.pdf-charts-row'] }
   };
 
   const downloadBtn = document.getElementById('pdf-download-btn');
   downloadBtn.innerHTML = currentLang === 'te' ? '<span>⏳</span> పిడిఎఫ్ (PDF) సిద్ధమౌతోంది...' : '<span>⏳</span> Generating PDF...';
   downloadBtn.disabled = true;
+
+  // Make wrapper visible for html2canvas to capture, then hide after
+  pdfWrapper.style.visibility = 'visible';
 
   html2pdf().from(pdfContainer).set(opt).save()
     .then(() => {
