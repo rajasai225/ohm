@@ -1598,6 +1598,7 @@ function downloadReportPdf() {
   const lblLong = currentLang === 'te' ? 'రేఖాంశం' : 'Long';
   const lblTZ = currentLang === 'te' ? 'టైమ్ జోన్' : 'TZ';
   const lblAge = currentLang === 'te' ? 'వయస్సు' : 'Age';
+  const dashaSuffix = currentLang === 'te' ? 'దశ' : 'Dasha';
 
   const headerMeta = `
     <div class="pdf-meta-top">${calc.name}</div>
@@ -1742,6 +1743,7 @@ function downloadReportPdf() {
   drawSouthIndianGrid(page1.querySelector('#pdf-rasi-chart'), calc.planets, calc.cusps, rasiCenterHtml, true);
 
   const progPlanets = calc.planets.map(p => ({ ...p, rawLon: p.rawLon }));
+  const progTitle = currentLang === 'te' ? 'ప్రోగ్రెషన్ (సౌర ఆర్క్)' : 'Progression (Solar Arc)';
   const progCenterHtml = `<strong>${progTitle}</strong>${lblAge} : 0<br>${lblDate} : ${formattedDate}<br>${lblTime} : ${formattedTime}<br>${lblLat} : ${calc.lat}<br>${lblLong} : ${calc.lng}`;
   drawSouthIndianGrid(page1.querySelector('#pdf-prog-chart'), progPlanets, calc.cusps, progCenterHtml, true);
 
